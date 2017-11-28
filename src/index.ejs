@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -17,12 +17,24 @@
 <% const menuItems = [
     {title: 'HairCare', link: '#'},
     {title: 'Color', link: '#'},
-    {title: 'Styling', link: '#'}
-    /* ... */
+    {title: 'Styling', link: '#'},
+    {title: 'Texture', link: '#'},
+    {title: 'Get inspired', link: '#'},
+    {title: 'Social', link: '#'},
+    {title: 'News', link: '#'},
+    {title: 'About', link: '#'},
+    {title: 'Professional', link: '#'}
+]; %>
+<% const breadcrumbs = [
+    {title: 'HOME', isActive: false, link: '#'},
+    {title: 'VIDEOS', isActive: true, link: '#'}
 ]; %>
 
 <header class="header">
     <div class="header__top">
+        <span>Nearest salon</span>
+        <span>Plush Salon 92101</span>
+        <span>Tam-Taram</span>
     </div>
     <div class="header__bottom">
         <div class="menu header__menu">
@@ -33,7 +45,64 @@
     </div>
 </header>
 
-<img src="img/pic.png" alt="">
+<div class="breadcrumbs">
+    <div class="breadcrumbs__menu">
+        <ul class="breadcrumbs__list">
+            <% breadcrumbs.forEach((item) => { %>
+            <li class="breadcrumbs__item">
+                <a href="<%= item.link %>" class="breadcrumbs__link"><%= item.title %></a>
+            </li>
+            <% if(item.isActive === false) { %>
+            <li class="breadcrumbs__separator">/</li>
+            <% } %>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+
+<div class="main">
+    <div class="main__title">VIDEOS</div>
+    <img src="img/pic.png" alt="">
+    <div class="main__content content">
+        <p class="content__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Pellentesque lobortis, nisl at ullamcorper egestas, felisadi piscing dolor,
+            a interdum lorem urna quis magna.
+        </p>
+    </div>
+    <hr class="main__line">
+    <% const videoblocks = [
+        { title: 'STEP BY STEP',
+          video: ['z8M0Fa1JVco','Wi2KcdoCuo4','8H6dYUgQKB8', 'PZjGrmHdFME', '_wLGr24VeoI', 'DG4FAU5qmMY'],
+          button: 'LOAD MORE'},
+        { title: 'CRAFT EDUCATION',
+          video: ['RmNWNLXmswk','-tztXOz8Vc0','kUfIVtyydgQ'],
+          button: 'LOAD MORE'},
+        { title: 'INSPIRATION',
+          video: ['VmmwwzR536g','vz0k8O-Ef9Y','6oPBFnsqJW8'],
+          button: 'LOAD MORE'}
+    ]%>
+
+    <li class="main__block block">
+        <ul class="block__list">
+            <% videoblocks.forEach((item) => { %>
+            <li class="block__item">
+                <div class="main__title"><%= item.title %></div>
+                <% for(var i=0; i < item.video.length; i++) { %>
+                <div class="main__video video">
+                    <a href="https://youtu.be/<%= item.video[i] %>" class="video__link">
+                        <img class="video__shortcut" alt = "<%= item.title %>" src="https://img.youtube.com/vi/<%= item.video[i] %>/maxresdefault.jpg">
+                    </a>
+                </div>
+                <% } %>
+               <button class="main__loadmore"><%= item.button %></button>
+            </li>
+            <% }) %>
+        </ul>
+</div>
+</div>
+
+
 <footer class="footer">
     <div class="menu menu_bottom footer__menu">
         <% menuItems.forEach((item) => { %>
